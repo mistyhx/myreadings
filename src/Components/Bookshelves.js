@@ -1,28 +1,21 @@
 import React, {Component} from 'react'
-import Book from './Book'
+import Header from "./Header";
+import Bookshelf from "./Bookshelf"
 
 
-const divStyle={
-    borderBottom: "1px solid grey"
-};
 
-class Bookshelf extends Component{
+class Bookshelves extends Component{
 
     state ={};
 
     render(){
         return(
-
-            <div style={divStyle}>
-                <h2>{this.props.bookshelfTitle}</h2>
-                <div>
-                    <ol>
-                        {this.props.books}
-                    </ol>
-                </div>
-            </div>
-        );
+          <div>
+        <Header title="My readings"/>
+            <Bookshelf books={this.props.booksOnShelf} />
+          </div>
+            );
     }
 }
 
-export default Bookshelf;
+export default Bookshelves;

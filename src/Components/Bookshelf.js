@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Book from './Book'
 
 
 const divStyle={
@@ -17,8 +16,25 @@ class Bookshelf extends Component{
                 <h2>{this.props.bookshelfTitle}</h2>
                 <div>
                     <ol>
-                        {this.props.books.map((book, i) => <li key={i}> <div style={{ width: 128,
-                            height: 193,backgroundImage: "url(" + book.imageLinks.thumbnail + ")"}}/></li>)}
+                      {this.props.books.map(book =>
+
+                          <li key={book.id} className="book">
+                              <div className="book-cover"
+                                   style={{
+                                  width: 128,
+                                  height: 193,
+                                  backgroundImage: "url(" + book.imageLinks.thumbnail + ")"
+                              }}>
+                              </div>
+                              <div className="book-title">
+                                  {book.title}
+                              </div>
+
+                          </li>
+
+
+                      )
+                      }
                     </ol>
                 </div>
             </div>
