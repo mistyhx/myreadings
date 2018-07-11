@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as BooksAPI from "../BooksAPI";
 import { Link } from "react-router-dom";
 
 class Search extends Component {
@@ -11,6 +12,12 @@ class Search extends Component {
     this.setState({
       query: query,
     });
+    const trimeedQuery = query.trim();
+    if (trimeedQuery)
+      BooksAPI.search(trimeedQuery, 100).then(books => {
+        if (books.error) this.setState({ books: [] });
+        else this.setState({ books });
+      });
   };
 
   render() {
