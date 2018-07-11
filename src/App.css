@@ -9,7 +9,17 @@ body, .app {
 }
 
 /* main page */
+li{
+  list-style-type:none;
+  margin:1em;
 
+}
+
+ol{
+
+  display:flex;
+  flex-wrap:wrap;
+}
 .list-books-title {
   padding: 10px 0;
   background: #2e7c31;
@@ -28,6 +38,7 @@ body, .app {
 
 .bookshelf {
   padding: 0 10px 20px;
+  border-bottom: #d6d0cf solid 1px;
 }
 
 @media (min-width: 600px) {
@@ -160,6 +171,7 @@ body, .app {
   opacity: 0;
   cursor: pointer;
 }
+
 
 /* book cover */
 

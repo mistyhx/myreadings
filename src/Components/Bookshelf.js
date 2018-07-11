@@ -1,45 +1,47 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
 
+class Bookshelf extends Component {
+  state = {};
 
-const divStyle={
-    borderBottom: "1px solid grey"
-};
+  render() {
+    return (
+      <div className="bookshelf">
+        <h2>{this.props.bookshelfTitle}</h2>
 
-class Bookshelf extends Component{
-
-    state ={};
-
-    render(){
-        return(
-
-            <div style={divStyle}>
-                <h2>{this.props.bookshelfTitle}</h2>
-                <div>
-                    <ol>
-                      {this.props.books.map(book =>
-
-                          <li key={book.id} className="book">
-                              <div className="book-cover"
-                                   style={{
-                                  width: 128,
-                                  height: 193,
-                                  backgroundImage: "url(" + book.imageLinks.thumbnail + ")"
-                              }}>
-                              </div>
-                              <div className="book-title">
-                                  {book.title}
-                              </div>
-
-                          </li>
-
-
-                      )
-                      }
-                    </ol>
+        <div>
+          <ol>
+            {this.props.books.map(book => (
+              <li key={book.id} className="book">
+                <div className="book-top">
+                  <div
+                    className="book-cover"
+                    style={{
+                      width: 128,
+                      height: 193,
+                      backgroundImage: "url(" + book.imageLinks.thumbnail + ")",
+                    }}
+                  />
+                  <div className="book-shelf-changer">
+                    <select value={book.shelf} onChange={e => this.props.onChangeShelf(book.id, e)}>
+                      <option value="none" disabled>
+                        Move to...
+                      </option>
+                      <option value="currentlyReading">Currently reading</option>
+                      <option value="wantToRead">Want to read</option>
+                      <option value="read">Read</option>
+                      <option value="none">None</option>
+                    </select>
+                  </div>
                 </div>
-            </div>
-        );
-    }
+                <div className="book-title">{book.title}</div>
+                <div className="book-authors">{book.authors}</div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Bookshelf;
