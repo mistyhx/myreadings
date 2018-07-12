@@ -20,6 +20,16 @@ class Search extends Component {
       });
   };
 
+  updateBookOnSearch = (book, shelf) => {
+    let temp = this.state.books;
+    const bookToUpdate = temp.filter(t => t.id === book)[0];
+    bookToUpdate.shelf = shelf;
+    this.setState({
+      books: temp,
+    });
+    this.props.onChangeShelf(book, shelf);
+  };
+
   render() {
     return (
       <div className="search-books">
@@ -48,7 +58,7 @@ class Search extends Component {
                     }}
                   />
                   <div className="book-shelf-changer">
-                    <select value={book.shelf} onChange={e => this.props.onChangeShelf(book.id, e)}>
+                    <select value={book.shelf} onChange={e => this.updateBookOnSearch(book.id, e.target.value)}>
                       <option value="none" disabled>
                         Move to...
                       </option>

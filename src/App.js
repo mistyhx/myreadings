@@ -19,12 +19,30 @@ class App extends React.Component {
     });
   }
 
+  handleChange = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(res => {
+      console.log("after update" + JSON.stringify(res));
+      this.getBookOnShelf();
+    });
+  };
+
+  getBookOnShelf() {
+    BooksAPI.getAll().then(data => {
+      this.setState({
+        books: data,
+      });
+    });
+  }
+
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => <Bookshelves booksOnShelf={this.state.books} />} />
 
-        <Route path="/search" render={() => <Search booksInSearch={this.state.books} />} />
+        <Route
+          path="/search"
+          render={() => <Search booksInSearch={this.state.books} onChangeShelf={this.handleChange} />}
+        />
       </div>
     );
   }
