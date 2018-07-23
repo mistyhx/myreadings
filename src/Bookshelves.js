@@ -3,7 +3,7 @@ import Header from "./Header";
 import Bookshelf from "./Bookshelf";
 import { Link } from "react-router-dom";
 
-import * as BooksAPI from "../BooksAPI";
+import * as BooksAPI from "./BooksAPI";
 
 class Bookshelves extends Component {
   state = {};
